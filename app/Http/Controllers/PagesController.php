@@ -10,7 +10,9 @@ class PagesController extends Controller {
 	//
     public function about(){
         //return 'A propos de moi';
-        return view('pages/about');
+        $title = "A propos";
+        $numbers = [1, 2, 3, 4];
+        return view('pages/about', compact('title', 'numbers'));
     }
 
 }
