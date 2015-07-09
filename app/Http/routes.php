@@ -28,14 +28,26 @@ Route::group(["prefix" => "admin", "middleware" =>  "ip"], function(){
 });*/
 
 
-Route::get("a-propos", ["as" => "about" ,"uses" => "PagesController@about"]);
+//Route::get("a-propos", ["as" => "about" ,"uses" => "PagesController@about"]);
 
-Route::get('/salut/{name}', 'WelcomeController@index');
+//Route::get('/salut/{name}', 'WelcomeController@index');
 
-Route::get('home', 'HomeController@index');
+//Route::get('home', 'HomeController@index');
 
 //Route::controller('welcome', 'welcomeController');
 
+
+Route::get('/', 'WelcomeController@index');
+
+
+Route::resource('link', 'LinksController', ['only' => ['create', 'store']]);
+Route::get('r/{link}', ['as' => 'link.show', 'uses' => 'LinksController'])->where('link', '[0-9]+');
+
+//Route::get('links/create', 'LinksController@create');
+//
+//Route::post('links/create', 'LinksController@store');
+//
+//Route::get('r/{id}', 'LinksController@show')->where('id', '[0-9]+');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
